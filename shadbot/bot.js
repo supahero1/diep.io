@@ -5,6 +5,9 @@ didnt bother myself to fix bc no reason to
 
 stuff is set to obey my user id, not yours, so change mine to urs lol.
 changing Owner is not enough, there are regexpes which include my user id too.
+
+oh also in the config file, `log` is for logging a message when the bot starts up. i stopped using it but its still in the code, u can get rid of it if want.
+some commands are not listed in the `bot help` embed. get to know them at the bottom, they are in a switch case.
 */
 
 
