@@ -2,7 +2,7 @@
 // @name         Diep.io Packet Parser
 // @version      1.0
 // @description  Parses all diep.io packets
-// @author       You
+// @author       Shädam
 // @match        *://diep.io/*
 // @grant        none
 // @run-at       document-start
