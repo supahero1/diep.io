@@ -373,7 +373,7 @@ Shädam.prototype.Update = function(a, b) { // I started programming from creati
         break;
       }
       case 17: { // ? 0.01 for mothership, 1 for everything else
-        console.log(this.getF());
+        this.getF();
         break;
       }
       case 18: {
