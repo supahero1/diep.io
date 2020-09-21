@@ -1,8 +1,8 @@
 // ==UserScript==
 // @name         Diep.io Packet Parser
 // @version      1.0
-// @description  Quickly written to parse update packets
-// @author       Shädam
+// @description  Parses all diep.io packets
+// @author       You
 // @match        *://diep.io/*
 // @grant        none
 // @run-at       document-start
@@ -20,11 +20,12 @@ To find the function which parses packets overally, search for "function jh(a,b)
 Working with WASM version of the code might improve readability and thus better understanding of what processes diep.io's client actually takes to parse packets, thus allowing for
 first technique to be used. Reverse engineering the asm.js code of no-WASM version might also do it, but it would take significantly more time.
 This parser might get outdated with a future diep.io update. Additionally, there is no guarance it parses everything possible, and its output to be correct all the time.
+This script is provided AS-IS, without warranty of any kind. Do not ask for support.
 */
 
 "use strict";
 
-window.alert = function() {}; // chrome
+window.alert = function() {};
 
 var pragmaOnce = 0;
 var work = true;
@@ -101,32 +102,12 @@ Shädam.prototype.set = function(a, b) {
   this.at = b || 0;
 };
 Shädam.prototype.getU = function() {
-  const one = this.buffer[this.at];
-  if(one >> 7 == 1) {
-    const two = this.buffer[this.at + 1];
-    if(two >> 7 == 1) {
-      const three = this.buffer[this.at + 2];
-      if(three >> 7 == 1) {
-        const four = this.buffer[this.at + 3];
-        if(four >> 7 == 1) {
-          this.at += 5;
-          return (this.buffer[this.at - 1] * 268435456) | ((four & 127) << 21) | ((three & 127) << 14) | ((two & 127) << 7) | (one & 127);
-        } else {
-          this.at += 4;
-          return four << 21 | ((three & 127) << 14) | ((two & 127) << 7) | (one & 127);
-        }
-      } else {
-        this.at += 3;
-        return three << 14 | ((two & 127) << 7) | (one & 127);
-      }
-    } else {
-      this.at += 2;
-      return two << 7 | (one & 127);
-    }
-  } else {
-    this.at++;
-    return one;
-  }
+  let number = 0;
+  let count = 0;
+  do {
+    number |= (this.buffer[this.at] & 0x7f) << (7 * count++);
+  } while((this.buffer[this.at++] >> 7) == 1);
+  return number;
 };
 Shädam.prototype.getI = function() {
   const i = this.getU();
@@ -373,7 +354,7 @@ Shädam.prototype.Update = function(a, b) { // I started programming from creati
         break;
       }
       case 17: { // ? 0.01 for mothership, 1 for everything else
-        this.getF();
+        console.log(this.getF());
         break;
       }
       case 18: {
@@ -786,7 +767,7 @@ Shädam.prototype.Create = function(a, b) {
   }
 
   if(fields.length == 2 && fields[0] == 1 && fields[1] == 10) { // ui, this contains basic stuff like fov and probably level u will spawn at. discover them on your own, not hard. not needed so im not including.
-    //sprintf(Array.from(this.buffer.subarray(Math.max(this.at, 0), Math.min(this.at + 200, this.buffer.length))).map(r => r.toString(16).padStart(2, '0')).join(' '));
+    //sprintf("1 10\n", Array.from(this.buffer.subarray(Math.max(this.at, 0), Math.min(this.at + 100, this.buffer.length))).map(r => r.toString(16).padStart(2, '0')).join(' '));
     this.getU(); // trivial player ID
     game.player.ID = this.getU(); // player ID (we will be created later in the packet, this only informs the client who we gonna be)
     this.getU();
@@ -816,12 +797,13 @@ Shädam.prototype.Create = function(a, b) {
     this.getF();
     this.getU();
     this.getU();
-    //console.log("the following should be 2 (if not, scream): " + this.getU());
+    /*console.log("the following should be 2 (if not, scream): " + this.getU());*/this.getU();
     entities[a] = {};
     return;
   }
 
   if(fields.length == 3 && fields[0] == 1 && fields[1] == 3 && fields[2] == 11) { // base's center, idk whats the use of this lol, center of orbit of base drones?
+    //sprintf("1 3 11\n", Array.from(this.buffer.subarray(Math.max(this.at, 0), Math.min(this.at + 30, this.buffer.length))).map(r => r.toString(16).padStart(2, '0')).join(' '));
     const e = { x: this.getI(), y: this.getI() };
     this.at += 6;
     this.getU();
@@ -834,6 +816,6 @@ Shädam.prototype.Create = function(a, b) {
     return;
   }
 
-  //sprintf("unknown creation field ", fields.join(' '), "\n" + b + "\n", Array.from(this.buffer.subarray(Math.max(this.at, 0), Math.min(this.at + 400, this.buffer.length))).map(r => r.toString(16).padStart(2, '0')).join(' '));
-  //throw new Error();
+  sprintf("unknown creation field ", fields.join(' '), "\n" + b + "\n", Array.from(this.buffer.subarray(Math.max(this.at, 0), Math.min(this.at + 400, this.buffer.length))).map(r => r.toString(16).padStart(2, '0')).join(' '));
+  throw new Error();
 };
