@@ -804,7 +804,7 @@ Shädam.prototype.Create = function(a, b) {
       game.stats[i].maxPoints = this.getI();
       game.stats[i].points = 0;
     }
-    this.at += 13; // useless stuff i guess. no time to waste to check whether it actually does something by setting the bytes to something else
+    this.at += 12; // useless stuff i guess. no time to waste to check whether it actually does something by setting the bytes to something else
     this.getF();
     if(this.getU() != 0) {
       this.getU();
@@ -822,7 +822,7 @@ Shädam.prototype.Create = function(a, b) {
   }
 
   if(fields.length == 3 && fields[0] == 1 && fields[1] == 3 && fields[2] == 11) { // base's center, idk whats the use of this lol, center of orbit of base drones?
-    const e = { x: this.getI(), y: this.getI(), angle: this.getI() };
+    const e = { x: this.getI(), y: this.getI() };
     this.at += 6;
     this.getU();
     e.color = this.getU();
