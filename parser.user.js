@@ -307,11 +307,11 @@ Shädam.prototype.Update = function(a, b) { // I started programming from creati
     stack[stack.length] = (i - 1);
     switch(i - 1) {
       case 0: {
-        entities[a].x = this.getI();
+        entities[a].y = this.getI();
         break;
       }
       case 1: {
-        entities[a].y = this.getI();
+        entities[a].x = this.getI();
         break;
       }
       case 2: {
