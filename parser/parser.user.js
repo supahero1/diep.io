@@ -27,6 +27,12 @@ of each packet. if it didn't get it straight, diep.io wouldn't even
 go past connecting screen.
 
 oh and pardon the console logs. u can comment them out if want.
+
+i just realised, when just randomly scrolling through the code, your
+console will get spammed the shit out of it bc of throw new Error()
+to prevent further packet processing. want to avoid it? put a return
+statement somewhere in Shädam.prototype.Upcreate() function. preferably
+before the loop to update and create entities, bc else it won't work lol.
 */
 
 window.alert = function() {};
