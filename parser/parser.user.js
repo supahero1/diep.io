@@ -18,6 +18,13 @@ all update fields and scoreboard creation are commented out bc
 i haven't yet updated them, was working on the jump table and stuff.
 
 packet parser not working yet, fixed only halfly.
+
+by going in game, you can witness yourself that the parser is working
+because when you look at the code for websocket which i overrided,
+it passes the parser's packets to diep.io. by working parser i mean
+the jump table and magic number shit. it gets straight the first byte
+of each packet. if it didn't get it straight, diep.io wouldn't even
+go past connecting screen.
 */
 
 window.alert = function() {};
