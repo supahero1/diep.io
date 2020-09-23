@@ -25,6 +25,8 @@ it passes the parser's packets to diep.io. by working parser i mean
 the jump table and magic number shit. it gets straight the first byte
 of each packet. if it didn't get it straight, diep.io wouldn't even
 go past connecting screen.
+
+oh and pardon the console logs. u can comment them out if want.
 */
 
 window.alert = function() {};
