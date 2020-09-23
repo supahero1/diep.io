@@ -33,6 +33,11 @@ console will get spammed the shit out of it bc of throw new Error()
 to prevent further packet processing. want to avoid it? put a return
 statement somewhere in Shädam.prototype.Upcreate() function. preferably
 before the loop to update and create entities, bc else it won't work lol.
+
+ok i realised its dumb and i added the return statement now. now you
+will at least be able to play normally. without it, the parses throws
+an error upon receiving scoreboard, which then prevents diep.io from
+processing the packet, and in result, making it not possible to spawn.
 */
 
 window.alert = function() {};
@@ -305,6 +310,7 @@ Shädam.prototype.Upcreate = function() {
   if(upcreated != 0) {
     sum[0] += "\n";
   }
+  return; // 
   for(i = 0; i < upcreated; ++i) {
     this.getU();
     a = this.getU();
