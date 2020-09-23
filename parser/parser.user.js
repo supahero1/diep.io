@@ -865,15 +865,6 @@ Shädam.prototype.Create = function(a, b) {
 
 function injection(s) {
   console.log('Running for real now...');
-  delete window.input;
-  Object.defineProperty(window, 'input', {
-    set: function(a) {
-      delete window.input;
-      window.input = a;
-    },
-    configurable: true,
-    enumerable: true
-  });
   return s.replace(/if\(b\&255\)/g, 'if(false)');
 }
 document.open();
