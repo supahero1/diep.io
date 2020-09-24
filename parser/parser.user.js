@@ -38,6 +38,10 @@ ok i realised its dumb and i added the return statement now. now you
 will at least be able to play normally. without it, the parses throws
 an error upon receiving scoreboard, which then prevents diep.io from
 processing the packet, and in result, making it not possible to spawn.
+
+
+ok ok look, now there is whole packet's encoding instead of first byte,
+like in agar.io. ill be trying to haxxor it.
 */
 
 window.alert = function() {};
