@@ -11,37 +11,40 @@
 "use strict";
 
 /*
-now it needs extension check disabler to function propertly. it is
-included at the end of the userscript.
-found out about jumptable and the magic number with HARD WORK.
-all update fields and scoreboard creation are commented out bc
-i haven't yet updated them, was working on the jump table and stuff.
 
-packet parser not working yet, fixed only halfly.
+look zeach, you are no match for me.
+even tho u added tons of new calculations and some advanced
+encoding stuff, i ez haxxor ur lil game below.
+maybe it now requires an extension disabler, maybe now it
+looks 10 times uglier than before, but it works.
 
-by going in game, you can witness yourself that the parser is working
-because when you look at the code for websocket which i overrided,
-it passes the parser's packets to diep.io. by working parser i mean
-the jump table and magic number shit. it gets straight the first byte
-of each packet. if it didn't get it straight, diep.io wouldn't even
-go past connecting screen.
+nothing changed since the last update of the parser -
+update fields and scoreboard creation are not fixed yet. but,
+at least, the packets are propertly decoded.
 
-oh and pardon the console logs. u can comment them out if want.
+to anyone whose' bots broke, instead of using the full parser,
+copy everything besides that WebSocket hook, extension disabler
+at the end of this parser, and Upcreate(), Update() and Create()
+functions. also delete that switch case in Parse() function.
+below decodePacket() function, you can deal with the raw, decoded
+packet, and do whatever u were doing with it before the updates.
 
-i just realised, when just randomly scrolling through the code, your
-console will get spammed the shit out of it bc of throw new Error()
-to prevent further packet processing. want to avoid it? put a return
-statement somewhere in Shädam.prototype.Upcreate() function. preferably
-before the loop to update and create entities, bc else it won't work lol.
+yes, it is ugly, u can try to make it prettier if u really want,
+but i see no point. every update will result in such ugly code.
+this is pure calculations, nothing to be done about it.
 
-ok i realised its dumb and i added the return statement now. now you
-will at least be able to play normally. without it, the parses throws
-an error upon receiving scoreboard, which then prevents diep.io from
-processing the packet, and in result, making it not possible to spawn.
-
-
-ok ok look, now there is whole packet's encoding instead of first byte,
-like in agar.io. ill be trying to haxxor it.
+changing the packet haldway through does not work anymore.
+one can make it work though, if they really want, though it's
+not really necessary to get update fields anyway.
+well, 2 ways:
+either pass the raw (decoded) packet to a special function
+of diep.io's client which will parse it,
+or
+encode the raw packet again using decodePacket (xor operation
+is reversible, thus can both decode and encode with one func)
+then change the first byte (op code) to the encoded op code
+the packet had before (gotta store that bad boy somewhere),
+and then just do WebSocket.onmessage({ data: myPacket })
 */
 
 window.alert = function() {};
@@ -54,29 +57,245 @@ var game = window.game = { fields: [],
                           stats: [{ points: 0 }, { points: 0 }, { points: 0 }, { points: 0 }, { points: 0 }, { points: 0 }, { points: 0 }, { points: 0 }],
                           player: { ID: null } }; // if player's id is not null, it means its alive
 
-const JUMP_TABLE = '19 1 2 62 4 13 20 15 68 39 80 33 23 53 77 72 73 6 70 34 61 5 98 82 76 11 69 43 66 44 22 40 48 81 78 60 14 103 90 28 67 35 21 8 100 71 92 45 95 52 57 105 75 74 7 38 122 114 121 30 87 93 65 0 112 47 89 29 91 12 25 101 118 51 106 56 59 54 24 79 99 36 115 108 55 32 97 37 104 116 110 26 50 123 3 94 126 127 18 124 16 88 10 102 42 117 85 113 9 46 49 41 119 84 109 125 64 58 17 63 86 111 107 96 31 27 120 83'.split(' ').map(r => +r);
-var MAGIC_NUMBER = 1683407606; // this and the jump table are for incoming packets. idfk if its the same for outcoming, im creating a parser here, not a whole damn client, so idc about outcoming.
+const JUMP_TABLE = '0 1 27 6 34 109 42 68 125 15 26 35 117 77 84 79 78 82 50 127 19 63 16 33 69 107 94 56 116 115 49 113 121 25 76 67 89 57 87 65 124 40 88 53 60 85 111 74 80 101 96 105 72 93 51 83 91 114 64 7 120 102 75 110 108 62 2 106 66 123 39 12 28 17 70 20 47 55 43 45 38 81 3 13 21 112 104 46 61 48 71 90 44 100 4 118 37 22 54 29 119 99 11 59 58 52 97 122 9 32 103 126 5 98 10 30 36 31 86 41 92 73 14 23 24 18 95 8 1 1 0 0 1 0 0 0 1 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0'.split(' ').map(r => +r);
+var MAGIC_NUMBER = 930338800;
+var TIMES = 0;
+var aa = 0;
+var $ = 0;
+var _ = 760463859;
+const DECODE_TABLE = new Array(27);
+
+function viiiiiiiiii(a, b, c, d) {
+  var e = 0;
+  var f = 0;
+  var g = 0;
+  var h = 0;
+  var i = 0;
+  var j = 0;
+  e = c >>> 16;
+  f = a >>> 16;
+  j = Math.imul(e, f);
+  g = c & 65535;
+  h = a & 65535;
+  i = Math.imul(g, h);
+  f = (i >>> 16) + Math.imul(f, g);
+  e = (f & 65535) + Math.imul(e, h);
+  a = (Math.imul(b, c) + j) + Math.imul(a, d) + (f >>> 16) + (e >>> 16);
+  b = i & 65535 | e << 16;
+  aa = a;
+  return b;
+}
+
+function viiiiiiiii(a) {
+  if(a) {
+    return 31 - Math.clz32(a + -1 ^ a);
+  }
+  return 32;
+}
+
+function viiiiiiii(a, b, c, d) {
+  var e = 0;
+  var f = 0;
+  var g = 0;
+  var h = 0;
+  var i = 0;
+  var j = 0;
+  var k = 0;
+  var l = 0;
+  var m = 0;
+  var n = 0;
+  var o = 0;
+  a: {
+    b: {
+      c: {
+        d: {
+          e: {
+            f: {
+              g: {
+                h: {
+                  i: {
+                    j: {
+                      g = b;
+                      if(g) {
+                        e = c;
+                        if(!e) {
+                          break j;
+                        }
+                        f = d;
+                        if(!f) {
+                          break i;
+                        }
+                        f = Math.clz32(f) - Math.clz32(g) | 0;
+                        if(f >>> 0 <= 31) {
+                          break h;
+                        }
+                        break b;
+                      }
+                      if((d | 0) == 1 & c >>> 0 >= 0 | d >>> 0 > 1) {
+                        break b;
+                      }
+                      b = (a >>> 0) / (c >>> 0) | 0;
+                      _ = a - Math.imul(b, c) | 0;
+                      $ = 0;
+                      aa = 0;
+                      return b;
+                    }
+                    e = d;
+                    if(!a) {
+                      break g;
+                    }
+                    if(!e) {
+                      break f;
+                    }
+                    f = e + -1 | 0;
+                    if(f & e) {
+                      break f;
+                    }
+                    _ = a;
+                    $ = f & g;
+                    a = g >>> (viiiiiiiii(e) & 31) | 0;
+                    aa = 0;
+                    return a;
+                  }
+                  f = e + -1 | 0;
+                  if(!(f & e)) {
+                    break e;
+                  }
+                  j = (Math.clz32(e) + 33 | 0) - Math.clz32(g) | 0;
+                  h = 0 - j | 0;
+                  break c;
+                }
+                j = f + 1 | 0;
+                h = 63 - f | 0;
+                break c;
+              }
+              _ = 0;
+              a = (g >>> 0) / (e >>> 0) | 0;
+              $ = g - Math.imul(a, e) | 0;
+              aa = 0;
+              return a;
+            }
+            f = Math.clz32(e) - Math.clz32(g) | 0;
+            if(f >>> 0 < 31) {
+              break d;
+            }
+            break b;
+          }
+          _ = a & f;
+          $ = 0;
+          if((e | 0) == 1) {
+            break a;
+          }
+          c = a;
+          a = viiiiiiiii(e);
+          d = a & 31;
+          if(32 <= (a & 63) >>> 0) {
+            f = 0;
+            a = b >>> d | 0;
+          } else {
+            f = b >>> d | 0;
+            a = ((1 << d) - 1 & b) << 32 - d | c >>> d;
+          }
+          aa = f;
+          return a;
+        }
+        j = f + 1 | 0;
+        h = 63 - f | 0;
+      }
+      e = b;
+      g = a;
+      f = j & 63;
+      i = f & 31;
+      if(32 <= (f & 63) >>> 0) {
+        f = 0;
+        l = e >>> i | 0;
+      } else {
+        f = e >>> i | 0;
+        l = ((1 << i) - 1 & e) << 32 - i | g >>> i;
+      }
+      a = h & 63;
+      h = a & 31;
+      if(32 <= (a & 63) >>> 0) {
+        e = g << h;
+        a = 0;
+      } else {
+        e = (1 << h) - 1 & g >>> 32 - h | b << h;
+        a = g << h;
+      }
+      b = e;
+      if(j) {
+        g = d + -1 | 0;
+        e = c + -1 | 0;
+        if((e | 0) != -1) {
+          g = g + 1 | 0;
+        }
+        h = e;
+        while(1) {
+          e = l;
+          f = f << 1 | e >>> 31;
+          e = e << 1;
+          k = f;
+          f = b >>> 31 | e;
+          m = k;
+          e = k;
+          k = f;
+          i = g - ((h >>> 0 < f >>> 0) + e | 0) | 0;
+          e = i >> 31;
+          i = i >> 31;
+          f = c & i;
+          l = k - f | 0;
+          f = m - ((d & e) + (k >>> 0 < f >>> 0) | 0) | 0;
+          e = b << 1 | a >>> 31;
+          a = n | a << 1;
+          b = e | o;
+          e = 0;
+          m = e;
+          k = i & 1;
+          n = k;
+          j = j + -1 | 0;
+          if(j) {
+            continue;
+          }
+          break;
+        }
+      }
+      _ = l;
+      $ = f;
+      e = b << 1 | a >>> 31;
+      a = k | a << 1;
+      aa = e | m;
+      return a;
+    }
+    _ = a;
+    $ = b;
+    a = 0;
+    b = 0;
+  }
+  aa = b;
+  return a;
+}
+function viiiiiii(a, b) {
+  viiiiiiii(a, b, 2147483647, 0);
+  aa = $;
+  return _;
+}
 
 function GET_NEXT_MAGIC_NUMBER() {
-  let b = MAGIC_NUMBER / 44488 | 0;
-  MAGIC_NUMBER = Math.imul(Math.imul(b, -44488) + MAGIC_NUMBER, 48271);
-  b = Math.imul(b, 3399);
-  MAGIC_NUMBER = (MAGIC_NUMBER < b ? 2147483647 : 0) + MAGIC_NUMBER - b;
+  var a = viiiiiii(viiiiiiiiii(MAGIC_NUMBER, 0, 48271, 0), aa);
+  TIMES = (a & 15) + 1;
+  for(let i = 0; i < 27; i++) {
+    a = viiiiiii(viiiiiiiiii(a, aa, 48271, 0), aa);
+    DECODE_TABLE[i] = a;
+  }
+  MAGIC_NUMBER = a;
 }
 
 function RESOLVE_JUMP(id) {
   GET_NEXT_MAGIC_NUMBER();
-  if(id < 3) {
-    sprintf("skipped to", id);
-    return id;
-  }
-  var a = (MAGIC_NUMBER & 63) + 1;
-  console.log("a is " + a);
   var b = id;
-  while(a--) {
+  while(TIMES--) {
     b = JUMP_TABLE[b];
   }
-  sprintf("resolved to", b);
   return b;
 }
 
@@ -105,7 +324,11 @@ WebSocket = class extends WebSocket {
     if(this.serverID == null) {
       return;
     }
-    MAGIC_NUMBER = 1683407606;
+    MAGIC_NUMBER = 930338800;
+    TIMES = 0;
+    aa = 0;
+    $ = 0;
+    _ = 760463859;
     this.serverID = this.serverID[1];
     this.link = "diep.io/#" + this.serverID.split('').map(r => r.charCodeAt().toString(16).padStart(2, '0').split('').reverse().join('')).join('');
     printf(`connected to server id ${this.serverID}, link ${this.link}`);
@@ -126,17 +349,16 @@ WebSocket = class extends WebSocket {
         }
         delete this.onmessage;
         this.onmessage = function({ data }) {
-          var g = new Uint8Array(data);
+          var g = new Uint8Array([...new Uint8Array(data)]);
           if(g[0] != 0 || g.length > 1) {
             this.canParse = true;
           }
+          sprintf("new packet\n" + Array.from(g).map(r => r.toString(16).padStart(2, '0')).join(' '));
           if(this.canParse == true) {
             Parser.set(g); // don't bother dataview, it's too slow to set up. best to use dataview when sending messages, because you can have one global instance of dataview and you won't waste time setting it up.
             Parser.parse();
-            return onmessage.call(this, { data: Parser.buffer });
-          } else {
-            return onmessage.call(this, { data });
           }
+          return onmessage.call(this, { data });
         };
       },
       enumerable: true,
@@ -254,12 +476,29 @@ Shädam.prototype.setF = function(number, at) {
   this.buffer[at++] = this.u[2];
   this.buffer[at++] = this.u[3];
 };
+Shädam.prototype.decodePacket = function() {
+  if(this.buffer.length < 2) {
+    return;
+  }
+  while(1) {
+    this.buffer[this.at] ^= DECODE_TABLE[this.at % 27];
+    if(++this.at != this.buffer.length) {
+      continue;
+    }
+    break;
+  }
+  this.at = 1;
+};
 Shädam.prototype.parse = function() {
   if(work == false) {
     return;
   }
   sprintf(this.buffer[this.at]);
-  switch(RESOLVE_JUMP(this.buffer[this.at++])) {
+  const op = RESOLVE_JUMP(this.buffer[this.at++]);
+  sprintf("correct op is " + op);
+  this.decodePacket();
+  sprintf("DECODED:\n" + Array.from(this.buffer).map(r => r.toString(16).padStart(2, '0')).join(' '));
+  switch(op) {
     case 0: {
       this.Upcreate();
       break;
@@ -314,7 +553,7 @@ Shädam.prototype.Upcreate = function() {
   if(upcreated != 0) {
     sum[0] += "\n";
   }
-  return; // 
+  return;
   for(i = 0; i < upcreated; ++i) {
     this.getU();
     a = this.getU();
@@ -340,7 +579,7 @@ Shädam.prototype.Update = function(a, b) { // I started programming from creati
     }
     stack[stack.length] = (i - 1);
     switch(i - 1) {
-      case 0: {
+      /*case 0: {
         entities[a].y = this.getI();
         break;
       }
@@ -352,7 +591,7 @@ Shädam.prototype.Update = function(a, b) { // I started programming from creati
         entities[a].angle = this.getI();
         break;
       }
-      /*case 3: {
+      case 3: {
         entities[a].radius = this.getF();
         break;
       }
@@ -875,6 +1114,15 @@ Shädam.prototype.Create = function(a, b) {
 
 function injection(s) {
   console.log('Running for real now...');
+  delete window.input;
+  Object.defineProperty(window, 'input', {
+    set: function(a) {
+      delete window.input;
+      window.input = a;
+    },
+    configurable: true,
+    enumerable: true
+  });
   return s.replace(/if\(b\&255\)/g, 'if(false)');
 }
 document.open();
