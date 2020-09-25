@@ -73,6 +73,13 @@ version of diep.io (or florrio) would not give me any enjoyment.
 i have other goals set as of now, neither of which include
 studying wasm.
 
+oh and also, the parser below will probably still work, with
+the new magic number's value for outcoming packets and jump table.
+i dont know for sure if the system hasnt changed though. the
+system of encoding the header byte and the rest of a packet that
+is. maybe it got a new update too to completely render the code
+below useless.
+
 --------------------------------------------------------------
 
 (update before)
