@@ -12,6 +12,71 @@
 
 /*
 
+latest update 25.09.2020
+
+asm.js removed, no ez way to do stuff anymore. i predicted this
+happening actually, wondered how it would look like.
+i started messing around, simple hook for window.alert reveals
+the exact wasm position of the caller. then i read some stuff
+about wasm, got to know what code return statement has, stuck
+it right before the alert being called, though as soon to be
+discovered by me, it was a bad idea, a terrible one, because
+then nothing would be rendered at all besides loading screen,
+most likely because after the series of if statements and blocks
+in middle of which the alert call was, all the drawing functions
+were being called (or one which then drew everything). naturally,
+my next idea was to make it so that i literally remove all the
+code i dont want diep.io to execute, passing all the wasm data
+to the instantiating function, without the code i dont like,
+including the alert caller. that sadly didn't work after multiple
+attempts, throwing an error. then i realised i don't want to
+waste more of my time and i stopped working on it. won't fix.
+
+partially this might be due to the fact i am not experienced with
+wasm, not yet at least. diep.io#7444 knows more about wasm than i
+do, that's for sure, so go ask him for help.
+
+foreign functions can be imported into wasm by inporting them at
+the beginning, just as diep.io imports a few functions, such as
+a function to invoke its javascript functions which cant be done
+in wasm. then one can invoke these functions in other functions
+like in idk, message parsing function, by adding code inside
+of the functions, shouldn't be too hard with some knowledge.
+
+code which no one cares about like extension check can be disabled
+by removing the code, i dont know why it didnt work for me though.
+maybe u will have more luck.
+
+best way of dealing with the update would most probably be to
+make a wasm editing tool which lets one edit wasm's code in
+form of text (like in chrome's developer tools) and then allow
+easily swapping the new code back to binary form. then, make a
+userscript which overrides the whole document with the modified
+document, with code which would, instead of using game's build
+file as wasm's input, use the modified binary. this is not a
+hard task as i have done it myself. beware certain strings
+though, as document.write freaks out when it sees a regexp
+or "\n" (at least in chrome).
+
+eventually i had this idea of converting wasm to js and then
+trying to do something with it further, but that's a solution
+for someone like me who doesn't know wasm very well. i am
+certain that working more with wasm would benefit in such an
+ease in haxxoring the game's code as asm.js. in the end, there
+are amasing chrome tools which provide more than enough help
+with wasm.
+
+summarizing, i will not continue working on the game's code,
+because of not enough time on daily basis to make learning wasm
+effective, which also implies that further working on the wasm
+version of diep.io (or florrio) would not give me any enjoyment.
+i have other goals set as of now, neither of which include
+studying wasm.
+
+--------------------------------------------------------------
+
+(update before)
+
 look zeach, you are no match for me.
 even tho u added tons of new calculations and some advanced
 encoding stuff, i ez haxxor ur lil game below.
