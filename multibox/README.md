@@ -29,7 +29,7 @@ node server.js
 ```
 Afterwards, from the command line, in the directory the `server.js` is at, run: `npm install ws` (or `sudo npm install ws` for linux) to install a WebSocket package for `server.js` to use.
 
-Then, all it takes to be able to use multibox is to run the file (for instance by double clicking on it).
+Then, all it takes to be able to use multibox is to run the created `.bat` or `.sh` file (for instance by double clicking on it, NOT the `server.js`!!).
 
 
 Additionally to the above, to not lag in game, it is **strongly recommended** that you also use [this](https://greasyfork.org/en/scripts/418966-eval-packet-overrider) and [that](https://greasyfork.org/en/scripts/420008-unlag). These scripts will improve the game's performance and will greatly increase the number of tanks you will be able to multibox.
