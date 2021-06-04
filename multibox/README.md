@@ -96,5 +96,7 @@ Additionally, if you are AFK and multibox is on, **AFK is the stronger one.** So
 
 Knowing all of the above, I guess you are all set to conquer the world with this multibox! There are a few more options, but they are rather understandable, and most of all, you can test them out yourself. They also have a help page once you click the question mark next to them.
 
+Obviously, to use more than 2 tanks, you will need a working VPN. A free one is for instance Hoxx VPN. It has limited bandwidth though, so never use it on youtube etc, or you will be locked out for the rest of the day. Use it only on diep.io (autoamtically all new tabs you open will have it on too so watch out).
+
 I am absolutely **NOT** opened for suggestions. If there are bugs, you can submit an issue, but I might as well not fix it.
 
