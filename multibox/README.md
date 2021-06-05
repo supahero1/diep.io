@@ -41,6 +41,9 @@ It is worth mentioning diep.io certainly runs best on Chrome (or similar chromiu
 
 On Windows (not sure about other OSes, you should try and see if it works), there is also a super neat trick to improve performance (on Chrome, I don't know how about other browsers) - reduce size of every window besides the master window (the one you will play with) (even down to 1 pixel height, the smaller the better). That means if you die you will first need to make the windows bigger so that's a little bit of a risk, but it should greatly increase FPS.
 
+![Screenshot from 2021-06-05 11-11-41](https://user-images.githubusercontent.com/47268949/120886550-dfa5b780-c5ee-11eb-8247-ad95b04c1d7f.png)
+
+
 # 3. Using the multibox
 
 After launching the game, nothing abnormal is going to happen, no tutorial or anything. The multibox's menu will be closed by default. To open it, press the \` key, aka the **master key** (on most keyboards - to the left of 1, directly above TAB). If you do not have the key or wish to use other one, please open the userscript in your Tampermonkey and edit the 18th line:
