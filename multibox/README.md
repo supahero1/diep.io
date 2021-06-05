@@ -33,7 +33,10 @@ Then, all it takes to be able to use multibox is to run the created `.bat` or `.
 
 
 Additionally to the above, to not lag in game, it is **strongly recommended** that you also use [this](https://greasyfork.org/en/scripts/418966-eval-packet-overrider) and [that](https://greasyfork.org/en/scripts/420008-unlag). These scripts will improve the game's performance and will greatly increase the number of tanks you will be able to multibox.
+
 It is worth mentioning diep.io certainly runs best on Chrome (or similar chromium-based browsers like Opera or Brave) and on Windows 10. You will have the most pleasant experience with a good browser and a good system. It is **NOT** the script's fault that you experience low frame rates or high ping.
+
+On Windows, there is also a super neat trick to improve performance (on Chrome, I don't know how about other browsers) - reduce size of every window besides the master window (the one you will play with) (even down to 1 pixel height, the smaller the better). That means if you die you will first need to make the windows bigger so that's a little bit of a risk, but it should greatly increase FPS.
 # 2. Using the multibox
 If you wish to only use the AFK feature, you absolutely do not need to do the steps mentioned above involving `server.js` and launching it. You don't even need `node.js` then. Only the `userscript.user.js` file to be a userscript in your Tampermonkey.
 
