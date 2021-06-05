@@ -1,5 +1,5 @@
 # 1. Prerequisites
-**WARNING!!:** If you ONLY want to use the AFK and NOT the multibox, please skip to the text directly above "2. Using the multibox".
+**WARNING!!:** If you ONLY want to use the AFK and NOT the multibox, please skip to the text directly above "2. Improving performance".
 
 To use the multibox, you need to have `node.js` installed on your computer. If you don't know what it is or are not sure if you have it installed, go to https://nodejs.org/, pick whatever release you want (LTS prefered), and install. If you want to check if you have it installed, open your command line and enter `node -v`. If it says something like `"node" is not recognized`, you need to install it.
 
@@ -31,14 +31,17 @@ Afterwards, from the command line, in the directory the `server.js` is at, run: 
 
 Then, all it takes to be able to use multibox is to run the created `.bat` or `.sh` file (for instance by double clicking on it, NOT the `server.js`!!).
 
+If you wish to only use the AFK feature, you absolutely do not need to do the steps mentioned above involving `server.js` and launching it. You don't even need `node.js` then. Only the `userscript.user.js` file to be a userscript in your Tampermonkey.
 
-Additionally to the above, to not lag in game, it is **strongly recommended** that you also use [this](https://greasyfork.org/en/scripts/418966-eval-packet-overrider) and [that](https://greasyfork.org/en/scripts/420008-unlag). These scripts will improve the game's performance and will greatly increase the number of tanks you will be able to multibox.
+# 2. Improving performance
+
+To not lag in game (both FPS and ping-wise), it is **strongly recommended** that you use [this](https://greasyfork.org/en/scripts/418966-eval-packet-overrider) and [that](https://greasyfork.org/en/scripts/420008-unlag). These scripts will improve the game's performance and will greatly increase the number of tanks you will be able to multibox.
 
 It is worth mentioning diep.io certainly runs best on Chrome (or similar chromium-based browsers like Opera or Brave) and on Windows 10. You will have the most pleasant experience with a good browser and a good system. It is **NOT** the script's fault that you experience low frame rates or high ping.
 
 On Windows, there is also a super neat trick to improve performance (on Chrome, I don't know how about other browsers) - reduce size of every window besides the master window (the one you will play with) (even down to 1 pixel height, the smaller the better). That means if you die you will first need to make the windows bigger so that's a little bit of a risk, but it should greatly increase FPS.
-# 2. Using the multibox
-If you wish to only use the AFK feature, you absolutely do not need to do the steps mentioned above involving `server.js` and launching it. You don't even need `node.js` then. Only the `userscript.user.js` file to be a userscript in your Tampermonkey.
+
+# 3. Using the multibox
 
 After launching the game, nothing abnormal is going to happen, no tutorial or anything. The multibox's menu will be closed by default. To open it, press the \` key, aka the **master key** (on most keyboards - to the left of 1, directly above TAB). If you do not have the key or wish to use other one, please open the userscript in your Tampermonkey and edit the 18th line:
 
@@ -60,7 +63,7 @@ The minus signs are placeholders for **keybinds** - assign a key to an option to
 
 You can hide the menu anytime by once again pressing the master key. The master key will be locked for use in any keybinds to not create a mess.
 
-# 3. Features
+# 4. Features
 ### 1. Pick AFK location:
 
 ![Screenshot from 2021-06-04 20-37-00](https://user-images.githubusercontent.com/47268949/120848119-adf00a80-c574-11eb-8a01-a07091446e54.png)
@@ -95,7 +98,7 @@ To be able to multibox tanks, you need to be aware of 3 things:
 
 Additionally, if you are AFK and multibox is on, **AFK is the stronger one.** So if you change tabs, the AFK tab will still be AFK. It will not follow.
 
-# Ending
+# 5. Ending
 
 Knowing all of the above, I guess you are all set to conquer the world with this multibox! There are a few more options, but they are rather understandable, and most of all, you can test them out yourself. They also have a help page once you click the question mark next to them.
 
