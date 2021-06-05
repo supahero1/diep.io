@@ -63,6 +63,20 @@ The minus signs are placeholders for **keybinds** - assign a key to an option to
 
 You can hide the menu anytime by once again pressing the master key. The master key will be locked for use in any keybinds to not create a mess.
 
+### Bypassing the 2 IP limit
+
+Normally, no one can join a diep.io server with more than 2 tanks at the same time. That can be easily bypassed though, with a VPN that will change your IP (but also increase ping, so never use VPN on your master tab). Many VPNs don't work due to the game not being that dumb, but a few do, including Hoxx VPN. It is available for most browsers. It has limited bandwidth though, which means you cannot use it 24/7. If you waste the bandwidth by, for instance, running the VPN on youtube or any other bandwidth-hungry site (not diep.io), you will lose access to the VPN for 24h. Run it ONLY on diep.io tabs. Note that if you turn it on, every new tab you open will automatically have it on too.
+
+Steps:
+
+1. First, level up your master tank without a VPN,
+
+2. Your next tab will be using your IP too, so dedicate it to something important like a feeding tank on other color in the server (if you need it),
+
+3. In the Hoxx VPN menu, pick a location closest to you and level up 2 more tabs,
+
+4. Turn off Hoxx VPN and pick a different location to receive a new IP for more tanks (come back to step 3).
+
 # 4. Features
 ### 1. Pick AFK location:
 
@@ -101,8 +115,6 @@ Additionally, if you are AFK and multibox is on, **AFK is the stronger one.** So
 # 5. Ending
 
 Knowing all of the above, I guess you are all set to conquer the world with this multibox! There are a few more options, but they are rather understandable, and most of all, you can test them out yourself. They also have a help page once you click the question mark next to them.
-
-Obviously, to use more than 2 tanks, you will need a working VPN. A free one is for instance Hoxx VPN. It has limited bandwidth though, so never use it on youtube etc, or you will be locked out for the rest of the day. Use it only on diep.io (autoamtically all new tabs you open will have it on too so watch out).
 
 I am absolutely **NOT** opened for suggestions. If there are bugs, you can submit an issue, but I might as well not fix it.
 
