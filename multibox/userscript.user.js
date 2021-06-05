@@ -504,7 +504,6 @@ function onready() {
   }
 
   function simulateMousePress(button, down) {
-    console.log('simulating ' + button + ' with state ' + down);
     canvas.dispatchEvent(new MouseEvent(down ? "mousedown" : "mouseup", { "clientX": mouse[0], "clientY": mouse[1], "button": button }));
   }
 
