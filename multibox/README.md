@@ -1,39 +1,6 @@
-# It looks like anything mouse-related (aim: precise and movement: mouse) don't work on retina displays. It will be fixed soon.
+# 1. Getting started
 
-# 1. Prerequisites
-**WARNING!!:** If you ONLY want to use the AFK and NOT the multibox, please skip to the text directly above "2. Improving performance".
-
-To use the multibox, you need to have `node.js` installed on your computer. If you don't know what it is or are not sure if you have it installed, go to https://nodejs.org/, pick whatever release you want (LTS prefered), and install. If you want to check if you have it installed, open your command line and enter `node -v`. If it says something like `"node" is not recognized`, you need to install it.
-
-`userscript.user.js` is meant to be used for Tampermonkey.
-
-The other file, `server.js`, needs to be downloaded and put in some place you have easy access to. You will need to use the file in order to use multibox feature of the script. AFK will still work without it.
-
-Once you have the file downloaded and put somewhere, you need to decide how you will use it. There are 2 ways:
-### 1. Launch it manually from the command line
-Open your command line, navigate to the location with the `server.js` file, then run `node server.js`. You can then stop the multibox server by pressing `Ctrl + C` or by closing the terminal.
-### 2. Launch it using an executable
-Windows: create a new file called `server.bat`, then put the following code inside of it:
-```
-node server.js
-```
-Linux: create a new file called `server.sh`, then put the following code inside of it:
-```
-#!/bin/bash
-cd path
-node server.js
-```
-Where "path" **must** be edited to be an absolute path to the location of the `server.js` file. For instance, if I put the `server.js` file at `/home/franek/Downloads/server.js`, the `server.sh` file will be:
-```
-#!/bin/bash
-cd /home/franek/Downloads
-node server.js
-```
-Afterwards, from the command line, in the directory the `server.js` is at, run: `npm install ws` (or `sudo npm install ws` for linux) to install a WebSocket package for `server.js` to use.
-
-Then, all it takes to be able to use multibox is to run the created `.bat` or `.sh` file (for instance by double clicking on it, NOT the `server.js`!!).
-
-If you wish to only use the AFK feature, you absolutely do not need to do the steps mentioned above involving `server.js` and launching it. You don't even need `node.js` then. Only the `userscript.user.js` file to be a userscript in your Tampermonkey.
+The script only runs in Tampermonkey. Any browser, any operating system. Retina displays supported.
 
 # 2. Improving performance
 
@@ -105,7 +72,7 @@ The multibox is a very advanced system aiming to make the gameplay of the user a
 
 3. Comfort - throughout time, movement of the multiboxed tabs has been evolving to allow for a much better experience. For instance, tabs will try to move out of your way when you are moving, and will try their best to always stick to you, without falling behind.
 
-### Getting started
+### Multiboxing
 
 To be able to multibox tanks, you need to be aware of 3 things:
 
