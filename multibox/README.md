@@ -2,6 +2,8 @@
 
 The script only runs in Tampermonkey. Any browser, any operating system. Retina displays supported.
 
+Get the script from [here](https://greasyfork.org/en/scripts/427585-advanced-multibox).
+
 # 2. Improving performance
 
 To not lag in game (both FPS and ping-wise), it is **strongly recommended** that you use [this](https://greasyfork.org/en/scripts/418966-eval-packet-overrider) and [that](https://greasyfork.org/en/scripts/420008-unlag). These scripts will improve the game's performance and will greatly increase the number of tanks you will be able to multibox.
