@@ -1,3 +1,5 @@
+# It looks like anything mouse-related (aim: precise and movement: mouse) don't work on retina displays. It will be fixed soon.
+
 # 1. Prerequisites
 **WARNING!!:** If you ONLY want to use the AFK and NOT the multibox, please skip to the text directly above "2. Improving performance".
 
