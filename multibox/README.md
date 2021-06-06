@@ -62,9 +62,7 @@ This option allows you to pick a place on the whole map that your tank will stic
 
 If you have not previously set an AFK location using the feature above, turning on AFK will cause you to stick to the location you currently are at. That's why reseting AFK position is important - it allows you to stick to right where you are, without needing to have a perfect pixel-wide mouse aiming skills to do it on the minimap.
 
-### 3. Turn multibox on and off:
-
-First step to use the multibox is to run the `server.js` file as mentioned before. After that is done, all tabs will talk to each other via the server and will be capable of synchronising - the whole point of multibox.
+### 3. Multiboxing
 
 The multibox is a very advanced system aiming to make the gameplay of the user as pleasant as possible. The main features are:
 
@@ -74,15 +72,13 @@ The multibox is a very advanced system aiming to make the gameplay of the user a
 
 3. Comfort - throughout time, movement of the multiboxed tabs has been evolving to allow for a much better experience. For instance, tabs will try to move out of your way when you are moving, and will try their best to always stick to you, without falling behind.
 
-### Multiboxing
+### but...
 
-To be able to multibox tanks, you need to be aware of 3 things:
+To be able to multibox tanks, you need to be aware of 2 things:
 
 **1.** If you are on Windows and are using Chrome, you first need to edit a browser flag to be able to multibox. Go to **chrome://flags/#calculate-native-win-occlusion** (need to copy paste it into the URL bar) and if at the top there is a setting called "calculate native window occlusion", change its state to **disabled**.
 
 **2.** To multibox at all, your tabs need to not actually be tabs. They need to be **windows**. The same was true for Bela's multibox - you need to take out individual tabs out of your window so that each of them has their own window. **BEHOLD!!:** If your AFK is on and you switch to other tab in the same window, **your diep.io tank might die, because it is not updated** (that's why it's so important to use **windows** and not **browser tabs**).
-
-**3.** If your `server.js` file is not running, turning on multibox in browser will display a "Multibox: ERROR" text on the multibox button. That means nothing else but that you need to run the `server.js` file in order to multibox. It's a reminder.
 
 Additionally, if you are AFK and multibox is on, **AFK is the stronger one.** So if you change tabs, the AFK tab will still be AFK. It will not follow.
 
