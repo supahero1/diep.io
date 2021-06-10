@@ -86,5 +86,5 @@ Additionally, if you are AFK and multibox is on, **AFK is the stronger one.** So
 
 Knowing all of the above, I guess you are all set to conquer the world with this multibox! There are a few more options, but they are rather understandable, and most of all, you can test them out yourself. They also have a help page once you click the question mark next to them.
 
-I am absolutely **NOT** opened for suggestions. If there are bugs, you can submit an issue, but I might as well not fix it.
+I am absolutely **NOT** open for suggestions. If there are bugs, you can submit an issue, but I might as well not fix it.
 
