@@ -1112,7 +1112,7 @@ function Ready() {
     },
     "leave": 11
   };
-  setTimeout(ScanServers, 100);
+  //setTimeout(ScanServers, 100);
   const Commands = [function(message) { // 0
     FragmentMessage(`**Casual commands:**\n` +
                     `\`go get help\`: displays this message\n` +
