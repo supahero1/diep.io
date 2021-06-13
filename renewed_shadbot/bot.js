@@ -350,22 +350,12 @@ Shädam.prototype.extractScoreboard = function() {
     
     
     
-    this.getF();
-    this.getF();
     for(i = 0; i < 10; ++i) {
       scoreboard.entries[i].color = this.getU();
     }
-    ++this.at;
-    this.getF();
-    this.getF();
-    this.getF();
-    this.getU();
-    this.getF();
-    this.getU();
     for(i = 0; i < 10; ++i) {
       scoreboard.entries[i].score = this.getF() | 0;
     }
-    ++this.at;
     for(i = 0; i < 10; ++i) {
       scoreboard.entries[i].name = this.getS();
     }
