@@ -10,8 +10,8 @@ const FileSystem = require('fs');
 var Config = {};
 var HelpingConfig = {};
 
-const LatestBuild = 'd2f03427541ea42547fbfb6aee10223a4b1edf29';
-const LatestDate = 'Sun, 07 Mar 2021 06:49:03 GMT';
+const LatestBuild = '';
+const LatestDate = '';
 var Unsafe = false;
 
 const DiepServers = {};
@@ -129,8 +129,6 @@ var DecompressionWorker = new Worker('8082', 1);
 DecompressionWorker.connect();
 
 const SAMPLES = 32;
-const DECODE_OFFSET_TABLE_LENGTH = 0;
-const ENCODE_OFFSET_TABLE_LENGTH = 0;
 
 const TICK_XOR = 0;
 
@@ -141,6 +139,9 @@ const I_JUMP_TIMES = [];
 const O_JUMP_TABLE = [];
 const ENCODE_TABLES = [];
 const O_JUMP_TIMES = [];
+
+const DECODE_OFFSET_TABLE_LENGTH = DECODE_TABLES[0].length;
+const ENCODE_OFFSET_TABLE_LENGTH = ENCODE_TABLES[0].length;
 
 const TANKS = [
   'Tank',
@@ -312,7 +313,7 @@ Shädam.prototype.encodePacket = function() {
   return 0;
 };
 Shädam.prototype.extractScoreboard = function() {
-  //console.log(this.buffer.hex());
+  console.log(this.buffer.hex());
   var i = 0;
   this.at = 1;
   const ticks = this.getU() ^ TICK_XOR; // encoded tick
@@ -337,32 +338,44 @@ Shädam.prototype.extractScoreboard = function() {
                 {name:"",score:0,tank:0,color:0,suffix:""}],
       uptime: ticks
     };
-    for(i = 0; i < 10; ++i) {
-      scoreboard.entries[i].tank = TANKS[this.getI()];
-    }
-    this.getF();
-    for(i = 0; i < 10; ++i) {
-      scoreboard.entries[i].score = this.getF() | 0;
-    }
-    this.getF();
-    this.getU();
-    this.getF();
+    return scoreboard;
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
     this.getF();
     this.getF();
     for(i = 0; i < 10; ++i) {
       scoreboard.entries[i].color = this.getU();
     }
+    ++this.at;
+    this.getF();
+    this.getF();
     this.getF();
     this.getU();
+    this.getF();
     this.getU();
+    for(i = 0; i < 10; ++i) {
+      scoreboard.entries[i].score = this.getF() | 0;
+    }
+    ++this.at;
     for(i = 0; i < 10; ++i) {
       scoreboard.entries[i].name = this.getS();
     }
-    this.getF();
-    scoreboard.count = this.getU();
     for(i = 0; i < 10; ++i) {
       scoreboard.entries[i].suffix = this.getS();
     }
+    for(i = 0; i < 10; ++i) {
+      scoreboard.entries[i].tank = TANKS[this.getI()];
+    }
+    scoreboard.count = this.getU();
     return scoreboard;
   } else {
     return { uptime: ticks, count: 0 };
@@ -481,7 +494,7 @@ function XHR(method, url, callback, data = null, headers = []) {
 
 const _https_get = https.get;
 https.get = function(...args) {
-  if(args[0]?.headers) {
+  if(args[0] && args[0].headers) {
     args[0].headers = {
       Host: args[0].host,
       Connection: undefined,
@@ -802,6 +815,7 @@ function SeekServers(gamemode) {
 
 function CleanConfig() {
   Config.whitelist = Config.whitelist.slice(0, HelpingConfig.whitelistLength);
+  Config.blacklist = Config.blacklist.slice(0, HelpingConfig.blacklistLength);
   Config.mods = Config.mods.slice(0, HelpingConfig.modsLength);
 }
 
@@ -1057,6 +1071,12 @@ function Ready() {
   } else {
     HelpingConfig.whitelistLength = Config.whitelist.length;
   }
+  if(Config.blacklist == null) {
+    Config.blacklist = [];
+    HelpingConfig.blacklistLength = 0;
+  } else {
+    HelpingConfig.blacklistLength = Config.blacklist.length;
+  }
   if(Config.mods == null) {
     Config.mods = [];
     HelpingConfig.modsLength = 0;
@@ -1089,18 +1109,20 @@ function Ready() {
     },
     "eval": 2,
     "whitelist": 3,
+    "blacklist": 18,
     "add": {
       "mods": 5
     },
     "remove": {
       "from": {
-        "whitelist": 4
+        "whitelist": 4,
+        "blacklist": 19
       },
       "mods": 6
     },
     "leave": 11
   };
-  //setTimeout(ScanServers, 100);
+  setTimeout(ScanServers, 100);
   const Commands = [function(message) { // 0
     FragmentMessage(`**Casual commands:**\n` +
                     `\`go get help\`: displays this message\n` +
@@ -1118,6 +1140,8 @@ function Ready() {
                     `**Moderator commands:**\n` +
                     `\`go whitelist\`: whitelists given servers/channels/users\n` +
                     `\`go remove from whitelist\`: removes given servers/channels/users from whitelist\n` +
+                    `\`go blacklist\`: blacklists given servers/channels/users\n` +
+                    `\`go remove from blacklist\`: removes given servers/channels/users from blacklist\n` +
                     `\`go leave\`: leaves the guild it is executed in\n` +
                     `**Owner commands:**\n` +
                     `\`go eval\`: evaluates given expression and shows the result\n` +
@@ -1125,7 +1149,7 @@ function Ready() {
                     `\`go remove mods\`: removes moderators\n` +
                     ``, 'Help', message.channel.id, false, false, false);
   }, function(message) { // 1
-    FragmentMessage('The bot was revived on 22.12.2020.', 'Info', message.channel.id);
+    FragmentMessage('The bot was revived on 22.12.2020. PS: and then again on 1.06.2021 lool', 'Info', message.channel.id);
   }, function(message) { // 2
     if(message.author.id != Config.owner) {
       return;
@@ -1408,7 +1432,6 @@ function Ready() {
     }
     StartMessageCycle(message.channel.id);
   }, async function(message, link) { // 13
-    return FragmentMessage(`This command is disabled.`, 'Scoreboard', message.channel.id);
     if(link.length == 0) {
       return FragmentMessage(`No links were provided.`, 'Scoreboard', message.channel.id);
     }
@@ -1455,7 +1478,6 @@ function Ready() {
       FragmentMessage(str, 'Scoreboard', message.channel.id, false, false, false);
     });
   }, function(message, args) { // 14
-    return FragmentMessage(`This command is disabled.`, 'Leaders', message.channel.id);
     var gamemodes = [];
     var regions = [];
     var exactScore = false;
@@ -1555,7 +1577,6 @@ function Ready() {
       FragmentMessage(`There are no leaders in specified gamemodes and regions above ${StringScore(score)}, the servers are being full (botted), or there is a problem occuring.`, `Leaders (${scoreboards.length})`, message.channel.id);
     }
   }, async function(message, links) { // 15
-    return FragmentMessage(`This command is disabled.`, 'Uptime', message.channel.id);
     if(links.length == 0) {
       return FragmentMessage(`No links were provided.`, 'Uptime', message.channel.id);
     }
@@ -1643,8 +1664,7 @@ function Ready() {
       }
     }
     StartMessageCycle(message.channel.id);
-  }, function(message, links) {
-    return FragmentMessage(`This command is disabled.`, 'Parties', message.channel.id);
+  }, function(message, links) { // 17
     if(links.length == 0) {
       return FragmentMessage(`No links were provided.`, 'Parties', message.channel.id);
     }
@@ -1677,6 +1697,70 @@ function Ready() {
       }
     }
     StartMessageCycle(message.channel.id);
+  }, function(message, IDs) { // 18
+    if(!IsMod(message.author.id) && message.author.id != Config.owner) {
+      return;
+    }
+    if(IDs.length == 0) {
+      return FragmentMessage(`No IDs specified.`, 'Add to blacklist', message.channel.id);
+    }
+    let j = 0;
+    let has = false;
+    let id;
+    for(let i = 0; i < IDs.length; i++) {
+      id = ExtractID(IDs[i]);
+      if(id == null) {
+        FragmentMessage(`${IDs[i]} is not a valid ID.`, 'Add to blacklist', message.channel.id, false, false, false, false, false, false);
+        continue;
+      }
+      has = false;
+      for(j = 0; j < HelpingConfig.blacklistLength; j++) {
+        if(Config.blacklist[j] == id) {
+          has = true;
+          break;
+        }
+      }
+      if(has == false) {
+        Config.blacklist[HelpingConfig.blacklistLength++] = id;
+        FragmentMessage(`ID ${id} successfully blacklisted.`, 'Add to blacklist', message.channel.id, false, false, false, false, false, false);
+      } else {
+        FragmentMessage(`ID ${id} is already blacklisted.`, 'Add to blacklist', message.channel.id, false, false, false, false, false, false);
+      }
+    }
+    StartMessageCycle(message.channel.id);
+    WriteConfig(function() {});
+  }, function(message, IDs) { // 19
+    if(!IsMod(message.author.id) && message.author.id != Config.owner) {
+      return;
+    }
+    if(IDs.length == 0) {
+      return FragmentMessage(`No IDs specified.`, 'Remove from blacklist', message.channel.id);
+    }
+    let j = 0;
+    let has = -1;
+    let id;
+    for(let i = 0; i < IDs.length; i++) {
+      id = ExtractID(IDs[i]);
+      if(id == null) {
+        FragmentMessage(`${IDs[i]} is not a valid ID.`, 'Remove from blacklist', message.channel.id, false, false, false, false, false, false);
+        continue;
+      }
+      has = -1;
+      for(j = 0; j < HelpingConfig.blacklistLength; j++) {
+        if(Config.blacklist[j] == id) {
+          has = j;
+          break;
+        }
+      }
+      if(has != -1) {
+        Config.blacklist[has] = Config.blacklist[--HelpingConfig.whitelistLength];
+        FragmentMessage(`ID ${id} successfully removed from blacklist.`, 'Remove from blacklist', message.channel.id, false, false, false, false, false, false);
+      } else {
+        FragmentMessage(`ID ${id} is already not blacklisted.`, 'Remove from blacklist', message.channel.id, false, false, false, false, false, false);
+      }
+    }
+    StartMessageCycle(message.channel.id);
+    WriteConfig(function() {});
   }];
   Client.on('message', async function(M) {
     if(M.channel.type == 'dm' && M.content.replace(/\\/g, '') == Config.hash) {
@@ -1694,6 +1778,14 @@ function Ready() {
           if(Config.whitelist[i] == M.channel.id || Config.whitelist[i] == M.guild.id || Config.whitelist[i] == M.author.id) {
             result = true;
           }
+        }
+        for(let i = 0; i < HelpingConfig.blacklistLength; i++) {
+          if(Config.blacklist[i] == M.channel.id || Config.blacklist[i] == M.guild.id || Config.blacklist[i] == M.author.id) {
+            result = false;
+          }
+        }
+        if(IsMod(M.author.id)) {
+          result = true;
         }
         return result;
       })() == true))) {
