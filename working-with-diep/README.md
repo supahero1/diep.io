@@ -808,3 +808,6 @@ Save the code and restart the bot. Check if it works. If scoreboards aren't corr
 ** **
 
 Have fun working with diep.io!
+
+
+A video representing the process of filling in information of the userscript and fixing the lb bot can be found [here](https://www.youtube.com/watch?v=ZiyVBmdi_Gs).
