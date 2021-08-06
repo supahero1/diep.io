@@ -410,9 +410,6 @@ Shädam.prototype.getFi = function(handler) {
 Shädam.prototype.decodeHeader = function(idx) {
   var i = 0;
   var a = idx;
-  if(a == 0) {
-    return a;
-  }
   while(1) {
     a = I_JUMP_TABLE[a];
     if(i++ == I_JUMP_TIMES[this.incoming]) {
