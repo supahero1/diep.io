@@ -1,0 +1,9 @@
+{
+  "dependencies": {
+    "node-fetch": "^3.0.0",
+    "puppeteer": "^10.4.0",
+    "puppeteer-extra": "^3.2.3",
+    "puppeteer-extra-plugin-anonymize-ua": "^2.3.3",
+    "puppeteer-extra-plugin-stealth": "^2.9.0"
+  }
+}
