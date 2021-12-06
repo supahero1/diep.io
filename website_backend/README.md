@@ -9,4 +9,4 @@ It saves player count status to a file called `players`. Some of the values are 
 
 Compatible with `../website/`.
 
-You can (and maybe even SHOULD) take out `fetch.mjs` and merge it with `renewed_shadbot_3`. No need to update the code manually every week then, and the shadbot2's code is known to be running very well, with only very minor issues with freezing sometimes (as in not discovering new scoreboards). Just note that the fetcher isn't taking incoming packet OP codes into account, so you'd need to tweak shadbot for that, or copy that part of code from `scanner.js`.
+You can (and maybe even SHOULD) take out `fetch.mjs` and merge it with `renewed_shadbot_3`. No need to update the code manually every week then, and the shadbot3's code is known to be running very well, with only very minor issues with freezing sometimes (as in not discovering new scoreboards). Just note that the fetcher isn't taking incoming packet OP codes into account, so you'd need to tweak shadbot for that, or copy that part of code from `scanner.js`.
