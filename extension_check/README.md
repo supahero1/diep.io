@@ -30,9 +30,7 @@ Object.defineProperty(Object.prototype, "some_property_name", {
   },
   get: function() {
     return prop_value;
-  },
-  configurable: true // to be able to delete the prop above, otherwise don't include this
-  // , enumerable: true      might be helpful too
+  }
 });
 
 ///////////////////
