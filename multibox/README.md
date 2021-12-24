@@ -76,7 +76,7 @@ The multibox is a very advanced system aiming to make the gameplay of the user a
 
 To be able to multibox tanks, you need to be aware of 2 things:
 
-**1.** If you are on Windows and are using Chrome, you first need to edit a browser flag to be able to multibox. Go to **chrome://flags/#calculate-native-win-occlusion** (need to copy paste it into the URL bar) and if at the top there is a setting called "calculate native window occlusion", change its state to **disabled**.
+**1.** If you are on Windows and are using Chrome, you first need to edit a browser flag to be able to multibox. Go to **chrome://flags/#calculate-native-win-occlusion** (need to copy paste it into the URL bar) and if at the top there is a setting called "calculate native window occlusion", change its state to **disabled**. If you are using Chrome Canary or the newest versions of Chrome which have that flag removed, you need to create a shortcut to the browser, then go to Properties and add `--disable-backgrounding-occluded-windows` after the path to the file, so that the end of the path looks something like `chrome.exe" --disable-backgrounding-occluded-windows` (note the space after the "). Then save and use the shortcut instead to launch your browser.
 
 **2.** To multibox at all, your tabs need to not actually be tabs. They need to be **windows**. The same was true for Bela's multibox - you need to take out individual tabs out of your window so that each of them has their own window. **BEHOLD!!:** If your AFK is on and you switch to other tab in the same window, **your diep.io tank might die, because it is not updated** (that's why it's so important to use **windows** and not **browser tabs**).
 
