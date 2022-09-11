@@ -1,4 +1,4 @@
-## Rivet's Proof of Work writte in Rust
+## Rivet's Proof of Work written in Rust
 
 The `build` folder contains a C++ solver with a nodejs compability.
 
