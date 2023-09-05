@@ -2,13 +2,13 @@
 
 The script only runs in Tampermonkey. Any browser, any operating system. Retina displays supported.
 
-Get the script from [here](https://greasyfork.org/en/scripts/427585-advanced-multibox).
+Get the script from the `mbox.user.js` file in this directory.
 
 # 2. Improving performance
 
-To not lag in game (both FPS and ping-wise), it is **strongly recommended** that you use [this](https://greasyfork.org/en/scripts/418966-eval-packet-overrider) and [that](https://greasyfork.org/en/scripts/420008-unlag). These scripts will improve the game's performance and will greatly increase the number of tanks you will be able to multibox.
+To not lag in game (both FPS and ping-wise), it is **strongly recommended** that you use [this](https://greasyfork.org/en/scripts/420008-unlag).
 
-It is worth mentioning diep.io certainly runs best on Chrome (or similar chromium-based browsers like Opera or Brave) and on Windows 10. You will have the most pleasant experience with a good browser and a good system. It is **NOT** the script's fault that you experience low frame rates or high ping.
+It is worth mentioning diep.io certainly runs best on Chrome (or similar chromium-based browsers like Opera or Brave) and on Windows. You will have the most pleasant experience with a good browser and a good system. It is **NOT** the script's fault that you experience low frame rates or high ping.
 
 On most browsers, there is also a super neat trick to improve performance - reduce size of every window besides the master window (the one you will play with) (even down to 1 pixel height, the smaller the better). That means if you die you will first need to make the windows bigger so that's a little bit of a risk, but it should greatly increase FPS.
 
@@ -17,7 +17,7 @@ On most browsers, there is also a super neat trick to improve performance - redu
 
 # 3. Using the multibox
 
-After launching the game, nothing abnormal is going to happen, no tutorial or anything. The multibox's menu will be closed by default. To open it, press the \` key, aka the **master key** (on most keyboards - to the left of 1, directly above TAB). If you do not have the key or wish to use other one, please open the userscript in your Tampermonkey and edit the 18th line:
+After launching the game, nothing abnormal is going to happen, no tutorial or anything. The multibox's menu will be closed by default. To open it, press the \` key, aka the **master key** (on most keyboards - to the left of 1, directly above TAB). If you do not have the key or wish to use other one, please open the userscript in your Tampermonkey and edit the 23rd line:
 
 ![Screenshot from 2021-06-04 20-28-29](https://user-images.githubusercontent.com/47268949/120847212-746acf80-c573-11eb-8a84-05524d7f2ddc.png)
 
@@ -37,19 +37,15 @@ The minus signs are placeholders for **keybinds** - assign a key to an option to
 
 You can hide the menu anytime by once again pressing the master key. The master key will be locked for use in any keybinds to not create a mess.
 
-### Bypassing the 2 IP limit
+### Bypassing the tab limit
 
-Normally, no one can join a diep.io server with more than 2 tanks at the same time. That can be easily bypassed though, with a VPN that will change your IP (but also increase ping, so never use VPN on your master tab). Many VPNs don't work due to the game not being that dumb, but a few do, including Hoxx VPN. It is available for most browsers. It has limited bandwidth though, which means you cannot use it 24/7. If you waste the bandwidth by, for instance, running the VPN on youtube or any other bandwidth-hungry site (not diep.io), you will lose access to the VPN for 24h. Run it ONLY on diep.io tabs. Note that if you turn it on, every new tab you open will automatically have it on too.
+To not get the `already in game` message on subsequent windows opening the same server, you can do 2 things:
 
-Steps:
+1. Get a userscript that deletes the `rivet:token` localStorage value upon going in game, which will reset your rivet account, or
 
-1. First, level up your master tank without a VPN,
+2. Open a new window, open the browser devtools (`F12` or `CTRL + SHIFT + I`), go to the desired diep link. After you notice that the game stops on "debugger", wait 5 seconds, then close the devtools.
 
-2. Your next tab will be using your IP too, so dedicate it to something important like a feeding tank on other color in the server (if you need it),
-
-3. In the Hoxx VPN menu, pick a location closest to you and level up 2 more tabs,
-
-4. Turn off Hoxx VPN and pick a different location to receive a new IP for more tanks (come back to step 3).
+The second method is preferable as it allows you to use the same account for all of your tabs. Once you become quick enough with it, you can also just "duplicate" your current diep.io tab to open the same link (if you joined via a link), and quickly open the console. This shaves off some time by not opening an empty tab first.
 
 # 4. Features
 ### 1. Pick AFK location:
@@ -87,4 +83,3 @@ Additionally, if you are AFK and multibox is on, **AFK is the stronger one.** So
 Knowing all of the above, I guess you are all set to conquer the world with this multibox! There are a few more options, but they are rather understandable, and most of all, you can test them out yourself. They also have a help page once you click the question mark next to them.
 
 I am absolutely **NOT** open for suggestions. If there are bugs, you can submit an issue, but I might as well not fix it.
-
