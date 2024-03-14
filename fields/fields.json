@@ -1,0 +1,614 @@
+[
+	[
+		{
+			"name": "parent",
+			"type": "entityID",
+			"group": 0,
+			"memType": "entid",
+			"repeat": 1,
+			"update": "entityID"
+		},
+		{
+			"name": "owner",
+			"type": "entityID",
+			"group": 0,
+			"memType": "entid",
+			"repeat": 1,
+			"update": "entityID"
+		},
+		{
+			"name": "team",
+			"type": "entityID",
+			"group": 0,
+			"memType": "entid",
+			"repeat": 1,
+			"update": "entityID"
+		}
+	],
+	[],
+	[
+		{
+			"name": "shooting",
+			"type": "vu",
+			"group": 2,
+			"memType": "i32",
+			"repeat": 1,
+			"update": "vu"
+		},
+		{
+			"name": "reloadTime",
+			"type": "f32",
+			"group": 2,
+			"memType": "f32",
+			"repeat": 1,
+			"update": "f32"
+		},
+		{
+			"name": "shootingAngle",
+			"type": "f32",
+			"group": 2,
+			"memType": "f32",
+			"repeat": 1,
+			"update": "f32"
+		}
+	],
+	[
+		{
+			"name": "objectFlags",
+			"type": "vu",
+			"group": 3,
+			"memType": "i32",
+			"repeat": 1,
+			"update": "vu"
+		},
+		{
+			"name": "sides",
+			"type": "vu",
+			"group": 3,
+			"memType": "i32",
+			"repeat": 1,
+			"update": "vu"
+		},
+		{
+			"name": "size",
+			"type": "f32",
+			"group": 3,
+			"memType": "_f32",
+			"repeat": 1,
+			"update": "f32"
+		},
+		{
+			"name": "width",
+			"type": "f32",
+			"group": 3,
+			"memType": "_f32",
+			"repeat": 1,
+			"update": "f32"
+		},
+		{
+			"name": "knockbackFactor",
+			"type": "f32",
+			"group": 3,
+			"memType": "f32",
+			"repeat": 1,
+			"update": "f32"
+		},
+		{
+			"name": "pushFactor",
+			"type": "f32",
+			"group": 3,
+			"memType": "f32",
+			"repeat": 1,
+			"update": "f32"
+		}
+	],
+	[
+		{
+			"name": "healthbar",
+			"type": "vu",
+			"group": 4,
+			"memType": "i32",
+			"repeat": 1,
+			"update": "vu"
+		},
+		{
+			"name": "health",
+			"type": "f32",
+			"group": 4,
+			"memType": "_f32",
+			"repeat": 1,
+			"update": "f32"
+		},
+		{
+			"name": "maxHealth",
+			"type": "f32",
+			"group": 4,
+			"memType": "_f32",
+			"repeat": 1,
+			"update": "f32"
+		}
+	],
+	[],
+	[
+		{
+			"name": "example",
+			"type": "vu",
+			"group": 6,
+			"memType": "i32",
+			"repeat": 1,
+			"update": "vu"
+		}
+	],
+	[
+		{
+			"name": "serverPlayerCount",
+			"type": "vu",
+			"group": 7,
+			"memType": "i32",
+			"repeat": 1,
+			"update": "vu"
+		},
+		{
+			"name": "serverPlayerIDs",
+			"type": "stringNT",
+			"group": 7,
+			"memType": "str",
+			"repeat": 80,
+			"update": "jump_stringNT"
+		},
+		{
+			"name": "serverPlayerNames",
+			"type": "stringNT",
+			"group": 7,
+			"memType": "str",
+			"repeat": 80,
+			"update": "jump_stringNT"
+		}
+	],
+	[
+		{
+			"name": "GUI",
+			"type": "vu",
+			"group": 8,
+			"memType": "i32",
+			"repeat": 1,
+			"update": "vu"
+		},
+		{
+			"name": "arenaLeftX",
+			"type": "f32",
+			"group": 8,
+			"memType": "f32",
+			"repeat": 1,
+			"update": "f32"
+		},
+		{
+			"name": "arenaTopY",
+			"type": "f32",
+			"group": 8,
+			"memType": "f32",
+			"repeat": 1,
+			"update": "f32"
+		},
+		{
+			"name": "arenaRightX",
+			"type": "f32",
+			"group": 8,
+			"memType": "f32",
+			"repeat": 1,
+			"update": "f32"
+		},
+		{
+			"name": "arenaBottomY",
+			"type": "f32",
+			"group": 8,
+			"memType": "f32",
+			"repeat": 1,
+			"update": "f32"
+		},
+		{
+			"name": "scoreboardAmount",
+			"type": "vu",
+			"group": 8,
+			"memType": "i32",
+			"repeat": 1,
+			"update": "vu"
+		},
+		{
+			"name": "scoreboardNames",
+			"type": "stringNT",
+			"update": "jump_stringNT",
+			"group": 8,
+			"repeat": 10,
+			"memType": "str"
+		},
+		{
+			"name": "scoreboardScores",
+			"type": "f32",
+			"update": "jump_vi",
+			"group": 8,
+			"repeat": 10,
+			"memType": "f32"
+		},
+		{
+			"name": "scoreboardColors",
+			"type": "vu",
+			"update": "jump_vu",
+			"group": 8,
+			"repeat": 10,
+			"memType": "i32"
+		},
+		{
+			"name": "scoreboardSuffixes",
+			"type": "stringNT",
+			"update": "jump_stringNT",
+			"group": 8,
+			"repeat": 10,
+			"memType": "str"
+		},
+		{
+			"name": "scoreboardTanks",
+			"type": "vi",
+			"update": "jump_vi",
+			"group": 8,
+			"repeat": 10,
+			"memType": "i32"
+		},
+		{
+			"name": "leaderX",
+			"type": "f32",
+			"group": 8,
+			"memType": "f32",
+			"repeat": 1,
+			"update": "f32"
+		},
+		{
+			"name": "leaderY",
+			"type": "f32",
+			"group": 8,
+			"memType": "f32",
+			"repeat": 1,
+			"update": "f32"
+		},
+		{
+			"name": "playersNeeded",
+			"type": "vi",
+			"group": 8,
+			"memType": "i32",
+			"repeat": 1,
+			"update": "vi"
+		},
+		{
+			"name": "ticksUntilStart",
+			"type": "f32",
+			"group": 8,
+			"memType": "_f32",
+			"repeat": 1,
+			"update": "f32"
+		}
+	],
+	[
+		{
+			"name": "nametag",
+			"type": "vu",
+			"group": 9,
+			"memType": "i32",
+			"repeat": 1,
+			"update": "vu"
+		},
+		{
+			"name": "name",
+			"type": "stringNT",
+			"group": 9,
+			"memType": "str",
+			"repeat": 1,
+			"update": "stringNT"
+		}
+	],
+	[
+		{
+			"name": "GUIunknown",
+			"type": "vu",
+			"group": 10,
+			"memType": "i32",
+			"repeat": 1,
+			"update": "vu"
+		},
+		{
+			"name": "camera",
+			"type": "vu",
+			"group": 10,
+			"memType": "i32",
+			"repeat": 1,
+			"update": "vu"
+		},
+		{
+			"name": "player",
+			"type": "entityID",
+			"group": 10,
+			"memType": "entid",
+			"repeat": 1,
+			"update": "entityID"
+		},
+		{
+			"name": "FOV",
+			"type": "f32",
+			"group": 10,
+			"memType": "f32",
+			"repeat": 1,
+			"update": "f32"
+		},
+		{
+			"name": "level",
+			"type": "vi",
+			"group": 10,
+			"memType": "i32",
+			"repeat": 1,
+			"update": "vi"
+		},
+		{
+			"name": "tank",
+			"type": "vu",
+			"group": 10,
+			"memType": "i32",
+			"repeat": 1,
+			"update": "vu"
+		},
+		{
+			"name": "levelbarProgress",
+			"type": "f32",
+			"group": 10,
+			"memType": "f32",
+			"repeat": 1,
+			"update": "f32"
+		},
+		{
+			"name": "levelbarMax",
+			"type": "f32",
+			"group": 10,
+			"memType": "f32",
+			"repeat": 1,
+			"update": "f32"
+		},
+		{
+			"name": "statsAvailable",
+			"type": "vi",
+			"group": 10,
+			"memType": "i32",
+			"repeat": 1,
+			"update": "vi"
+		},
+		{
+			"name": "statsNames",
+			"type": "stringNT",
+			"update": "jump_stringNT",
+			"group": 10,
+			"repeat": 8,
+			"memType": "str"
+		},
+		{
+			"name": "statsAllocated",
+			"type": "vu",
+			"update": "jump_vu",
+			"group": 10,
+			"repeat": 8,
+			"memType": "i32"
+		},
+		{
+			"name": "statsMax",
+			"type": "vi",
+			"update": "jump_vi",
+			"group": 10,
+			"repeat": 8,
+			"memType": "i32"
+		},
+		{
+			"name": "cameraX",
+			"type": "f32",
+			"group": 10,
+			"memType": "f32",
+			"repeat": 1,
+			"update": "f32"
+		},
+		{
+			"name": "cameraY",
+			"type": "f32",
+			"group": 10,
+			"memType": "f32",
+			"repeat": 1,
+			"update": "f32"
+		},
+		{
+			"name": "scorebar",
+			"type": "f32",
+			"group": 10,
+			"memType": "_f32",
+			"repeat": 1,
+			"update": "f32"
+		},
+		{
+			"name": "respawnLevel",
+			"type": "vi",
+			"group": 10,
+			"memType": "i32",
+			"repeat": 1,
+			"update": "vi"
+		},
+		{
+			"name": "killedBy",
+			"type": "stringNT",
+			"group": 10,
+			"memType": "str",
+			"repeat": 1,
+			"update": "stringNT"
+		},
+		{
+			"name": "spectatorID",
+			"type": "stringNT",
+			"group": 10,
+			"memType": "str",
+			"repeat": 1
+		},
+		{
+			"name": "spawnTick",
+			"type": "vu",
+			"group": 10,
+			"memType": "i32",
+			"repeat": 1,
+			"update": "vu"
+		},
+		{
+			"name": "deathTick",
+			"type": "vu",
+			"group": 10,
+			"memType": "i32",
+			"repeat": 1,
+			"update": "vu"
+		},
+		{
+			"name": "tankOverride",
+			"type": "vu",
+			"group": 10,
+			"memType": "str",
+			"repeat": 1,
+			"update": "vu"
+		},
+		{
+			"name": "movementSpeed",
+			"type": "f32",
+			"group": 10,
+			"memType": "f32",
+			"repeat": 1,
+			"update": "f32"
+		}
+	],
+	[
+		{
+			"name": "y",
+			"type": "vi",
+			"group": 11,
+			"memType": "_f32",
+			"repeat": 1,
+			"update": "vi"
+		},
+		{
+			"name": "angle",
+			"type": "vi",
+			"group": 11,
+			"memType": "_f32",
+			"repeat": 1,
+			"update": "vi"
+		},
+		{
+			"name": "x",
+			"type": "vi",
+			"group": 11,
+			"memType": "_f32",
+			"repeat": 1,
+			"update": "vi"
+		},
+		{
+			"name": "trapezoidAngle",
+			"type": "vi",
+			"group": 11,
+			"memType": "i32",
+			"repeat": 1,
+			"update": "vi"
+		}
+	],
+	[
+		{
+			"name": "style",
+			"type": "vu",
+			"group": 12,
+			"memType": "i32",
+			"repeat": 1,
+			"update": "vu"
+		},
+		{
+			"name": "color",
+			"type": "vu",
+			"group": 12,
+			"memType": "i32",
+			"repeat": 1,
+			"update": "vu"
+		},
+		{
+			"name": "borderThickness",
+			"type": "vi",
+			"group": 12,
+			"memType": "_f32",
+			"repeat": 1,
+			"update": "vi"
+		},
+		{
+			"name": "opacity",
+			"type": "f32",
+			"group": 12,
+			"memType": "_f32",
+			"repeat": 1,
+			"update": "f32"
+		},
+		{
+			"name": "serverEntityCount",
+			"type": "vu",
+			"group": 12,
+			"memType": "i32",
+			"repeat": 1,
+			"update": "vu"
+		}
+	],
+	[],
+	[
+		{
+			"name": "score",
+			"type": "f32",
+			"group": 14,
+			"memType": "_f32",
+			"repeat": 1,
+			"update": "f32"
+		}
+	],
+	[
+		{
+			"name": "teamColor",
+			"type": "vu",
+			"group": 15,
+			"memType": "i32",
+			"repeat": 1,
+			"update": "vu"
+		},
+		{
+			"name": "mothershipX",
+			"type": "f32",
+			"group": 15,
+			"memType": "f32",
+			"repeat": 1,
+			"update": "f32"
+		},
+		{
+			"name": "mothershipY",
+			"type": "f32",
+			"group": 15,
+			"memType": "f32",
+			"repeat": 1,
+			"update": "f32"
+		},
+		{
+			"name": "mothership",
+			"type": "vu",
+			"group": 15,
+			"memType": "i32",
+			"repeat": 1,
+			"update": "vu"
+		},
+		{
+			"name": "unk1",
+			"type": "vu",
+			"group": 15,
+			"memType": "i32",
+			"repeat": 1,
+			"update": "vu"
+		}
+	]
+]
