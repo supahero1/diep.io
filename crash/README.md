@@ -32,4 +32,6 @@ I've included py+js and pure js solutions in this folder implementing this bug _
 
 Generally the python script is favourable since it's much faster and efficient, later on i made the userscript version but it's ass in comparison. also note that the python script requires some input to work - you get that input from the `crash_info()` function. you call it once you're in the lobby, get the output, paste it into the commandline like `python3 crash.py <the thing here>`.
 
+Oh yea also, you need the `websocket-client` py package for the py script to work. And also note that you are supposed to manually stop it. I generally set it to an infinite loop, both js' `crash()` and py. The meaning behind that is not to keep fucking the server up, it's to let the user decide when to cut it out.
+
 # Just go out there and abuse the fuck out of this so that it gets patched immediately :pray: :pray: :pray:
